@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getStory } from "../services/hnAPIs";
+import { mapTime } from "../mappers/mapTime";
 
 export const Story = ({storyId}) => {
     const [story, setStory] = useState({});
@@ -14,7 +15,7 @@ export const Story = ({storyId}) => {
                 <p>{story.title}</p>
             </a>
             By: <p>{story.by}</p>
-            Posted: <p>{story.time}</p>
+            Posted: <p>{mapTime(story.time)}</p>
         </>
     )
     : null
