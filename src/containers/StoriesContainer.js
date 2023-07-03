@@ -13,8 +13,10 @@ export const StoriesContainer = () => {
 
     return (
         <>
-        <h1>Hacker News Stories</h1>
-        {storyIds.slice(0, count).map(storyId => <Story key={storyId} storyId={storyId}/>)}
+            <h1>Hacker News Stories</h1>
+            {storyIds.slice(0, count).map(storyId => 
+                <Story key={storyId} storyId={storyId}/>
+            )}
         </>
     );
 }

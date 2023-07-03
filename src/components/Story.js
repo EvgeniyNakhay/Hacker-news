@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { getStory } from "../services/hnAPIs";
 import { mapTime } from "../mappers/mapTime";
 import { useInfiniteScroll } from "../hooks/useInfiniteScroll";
 
-export const Story = ({storyId}) => {
+export const Story = memo(function Story({storyId}) {
     const [story, setStory] = useState({});
-    const test = useInfiniteScroll();
 
     useEffect(() => {
         getStory(storyId).then(data => data && data.url && setStory(data))
@@ -14,11 +13,13 @@ export const Story = ({storyId}) => {
     return story && story.url ? (
         <>
             <a href={story.url}>
-                <p>{story.title}</p>
+                <p>
+                    {story.title}
+                </p>
             </a>
             By: <p>{story.by}</p>
             Posted: <p>{mapTime(story.time)}</p>
         </>
     )
     : null
-}
+})
